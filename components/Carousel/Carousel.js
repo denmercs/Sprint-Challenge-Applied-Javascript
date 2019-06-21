@@ -6,21 +6,40 @@ class Carousel {
         this.leftBtn = this.carousel.querySelector('.left-button');
 
         // 2. You will need to grab a reference to all of the images
-        this.img = this.carousel.querySelectorAll('img');
+        this.images = this.carousel.querySelectorAll('img');
 
         // 3. Create a current index
-        this.currentSlideIndex = 0;
-        this.currentImg = this.img[0];
-        this.currentImg.style.display = 'flex';
-
+        this.index = 0;
+        this.currentImage = this.images[0];
         // 4. Those buttons are gonna need some click handlers.
-        this.left.addEventListener('click', () => this.moveLeft());
-        this.right.addEventListener('click', () => this.moveRight());
+        this.leftBtn.addEventListener('click', () => this.moveLeft());
+        this.rightBtn.addEventListener('click', () => this.moveRight());
 
     }
 
     moveLeft() {
-        
+        /*
+        this.images.forEach(img => img.classList.remove('img-show'));
+        this.index--;
+        if(this.index < 0) {
+            this.index = 3;
+        }
+        */
+       this.images.forEach(img => img.classList.remove('img-show'));
+       this.index--;
+       if(this.index < 0) {
+           this.index = 3;
+       }
+        this.images[this.index].classList.add('img-show');
+      }
+    
+    moveRight() {
+        this.images.forEach(img => img.classList.remove("img-show"));
+        this.index++;
+        if (this.index > 3) {
+            this.index = 0;
+        }
+        this.images[this.index].classList.add("img-show");
     }
 }
 
